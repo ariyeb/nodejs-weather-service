@@ -13,6 +13,3 @@ app.use(weatherRouter)
 app.listen(port, () => {
     console.log('Server connected, port: ' + port)
 })
-
-// https://api.openweathermap.org/data/2.5/weather?q=jerusalem&appid=
-// mongodb+srv://ariyeb:Ariyeb321@cluster0-jzjfj.mongodb.net/weather-service?retryWrites=true&w=majority
