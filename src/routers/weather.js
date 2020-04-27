@@ -41,10 +41,14 @@ router.post('/actual-temp/:city', async (req, res) => {
     const actual_temp = req.query.actual_temp
 
     try {
-        const weather = await forecast(city)
-        const weatherDocumant = new Weather({ city: city, weather, actual_temp })
-        await weatherDocumant.save()
-        res.send(weatherDocumant)
+        if (actual_temp) {
+            const weather = await forecast(city)
+            const weatherDocumant = new Weather({ city: city, weather, actual_temp })
+            await weatherDocumant.save()
+            res.send(weatherDocumant)
+        } else {
+            res.status(400).send({ error: "lack of actual_temp query parameter" })
+        }
     } catch (e) {
         if (e.message === "404") {
             res.status(404).send({ error: "city not found" })
